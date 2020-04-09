@@ -4,6 +4,8 @@
 ## guxiayu 
 #set -x
 set -e 
+
+
 ###
 # basic var 
 ###
