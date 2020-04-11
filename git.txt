@@ -1,0 +1,52 @@
+git init
+git status 
+git log
+	option:
+		--graph
+============
+
+git add
+	git add .
+	git add --all
+git commit
+	option:
+		-m message
+git branch
+	options:
+		-vv list branch map between local and remote
+		-b  create and checkout
+	`	-d  delete
+		-u equ --upstream-to bind loacl current branch and remote one
+			--upstream-to=(remote repo/branch) local branch bind two
+		--unset-upstream
+		-a list all branch
+git tag
+git stash
+git checkout
+	git checkout (branch name)
+	option:
+		-b
+git reset
+	options:
+		--hard
+		--mix
+		--soft
+git merge
+	git merge -m message --no-ff (the branch you want to merge)
+	options:--no-ff no fast forward
+		-m  message
+=========
+
+git remote
+	git remote add (remote repo name) (addr)
+git clone
+git push
+	option:
+		--set-upstream 
+		--delete # delete remote branch 
+git pull
+	git pull (remote repo name) (remote branch name) 
+	options:
+		--allow-unrelated-histories
+git fetch
+
