@@ -24,12 +24,14 @@ var_one="string"
 
 arr_one[0]=12
 arr_one[2]="asd"
+
 # no autofill,typecheck
 echo -e "===test res for basic form==== "
 echo -e "var_one="${var_one}"\nvar_two="${var_two}
 echo -e "var_three="${var_three}
 echo -e "arr_one="${arr_one}"\narr_two="${arr_one[1]}
 echo -e "arr_three="${arr_one[2]}
+echo -e "content of arr="${arr_one[@]}
 echo -e "===test res for basic form==== "
 # local var
 # see below 
