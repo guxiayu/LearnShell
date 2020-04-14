@@ -1,0 +1,56 @@
+# mysql learing writeup
+# date : 4/13
+
+mysql -u usr -p passwd
+
+show databases;
+
+create database databaseName;
+create table tableName (
+    col_name col_type option,
+    col_name col_type option,
+    col_name col_type option,
+)option;
+
+
+use databaseName;
+
+insert into tableName (col_name,...) values (col_value,...);
+
+select col_name, col_name,... from tableName where ... limit num offset num;
+    limit clause options:
+    offset clause options:
+
+    where clause options:
+        binary
+        like
+        and 
+        or
+    union clause options://connect two select clauses;
+        distinct
+        all
+    order by clause options:
+        asc //ascent
+        desc //descent
+    group by col_name clause options:
+        select *, count(*) from stu group by col_name
+    with rollup
+        //分组之后 再计算一组的某一列的值
+    join clause :
+        inner join 
+        left join
+        right join
+        
+        select a.job from stu a inner join stu_2 b on a.age=b.age;
+
+
+update tableName set col_name=value, ... where ...;
+
+delete from tableName where ...;
+
+
+
+drop database databaseName;
+drop table tableName;
+
+
