@@ -6,12 +6,28 @@ mysql -u usr -p passwd
 show databases;
 
 create database databaseName;
-create table tableName (
+create [temporary] table tableName (
     col_name col_type option,
     col_name col_type option,
     col_name col_type option,
 )option;
+    col option:
+        not null,
+        default,
+        auto_increment,
+        primary key(colname),
+        unique(colname)
 
+#dup new table structure;
+create table newtableName like oldName;
+
+#dup new table 
+create table newtableName select * from oldName;
+
+show create table tableName;
+
+
+create index indexName on tableName
 
 use databaseName;
 
@@ -24,6 +40,7 @@ select col_name, col_name,... from tableName where ... limit num offset num;
     where clause options:
         binary
         like
+        regexp
         and 
         or
     union clause options://connect two select clauses;
@@ -42,13 +59,36 @@ select col_name, col_name,... from tableName where ... limit num offset num;
         right join
         
         select a.job from stu a inner join stu_2 b on a.age=b.age;
-
+    meta option:
+    
+    select version();
+           database();
+           user();
+    show   status;
+           variables;
+    having
+    into outfile fileName
 
 update tableName set col_name=value, ... where ...;
 
 delete from tableName where ...;
 
+show columns from tableName;
 
+alter table tableName drop col_name;
+alter table tableName add col_name col_type;
+    alter clause:
+        add clause:
+            index
+        
+        drop
+        modify
+        change
+        alter :
+           alter table tableName alter i set default num;
+           alter table tableName alter i drop default;
+        engine
+        rename to
 
 drop database databaseName;
 drop table tableName;
