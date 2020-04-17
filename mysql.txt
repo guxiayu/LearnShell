@@ -1,22 +1,87 @@
 # mysql learing writeup
 # date : 4/13
 
+# mysql data type
+# ======int type========
+# tinyint        1 byte
+# smallint       2 bytes
+# mediumint      3 bytes 
+# int            4 bytes
+# bigint         8 bytes
+# ======float type======
+# float          4 bytes 
+# double         8 bytes 
+# decimal(10, 0) 
+# ======time type========
+# year          1 byte
+# time          3 bytes
+# date          3 bytes
+# datetime      8 bytes
+# timestamp     4 bytes
+# ======char type========
+# char()
+# varchar()
+# tinytext
+# text
+# mediumtext
+# longtext
+# enum
+# set 
+# ======int type========
+# bit()
+# binary()
+# varbinary()
+# tinyblob()
+# blob()
+# mediumblob()
+# longblob()
+
+
 mysql -u usr -p passwd
 
 show databases;
+show databases like 'name';
+show engines;
 
 create database databaseName;
+
+create database if not exists databaseName;
+    options:
+        default character set setName;
+        default collate collateName;
+
+use database Name;
+
+alter database name;
+    options:
+        default character set setName;
+        dafaule collate collateName;
+
+set default_storage_engine=engineName;
+
+
 create [temporary] table tableName (
     col_name col_type option,
     col_name col_type option,
     col_name col_type option,
 )option;
     col option:
-        not null,
         default,
         auto_increment,
+        //主键约束
+        primary key,
         primary key(colname),
-        unique(colname)
+        primary key(colname, colname,...),
+        //唯一约束
+        unique,//null is ok
+        //外键约束
+        constraint name foreign key(colname) references main_table(col_name);
+        //默认约束
+        check()
+        //默认值约束
+        default
+        //非空约束
+        not null
 
 #dup new table structure;
 create table newtableName like oldName;
@@ -24,7 +89,11 @@ create table newtableName like oldName;
 #dup new table 
 create table newtableName select * from oldName;
 
-show create table tableName;
+
+
+
+show create table tableName\G;
+show create database databaseName;
 
 
 create index indexName on tableName
@@ -35,6 +104,8 @@ insert into tableName (col_name,...) values (col_value,...);
 
 select col_name, col_name,... from tableName where ... limit num offset num;
     limit clause options:
+        limit n
+        limit n, m
     offset clause options:
 
     where clause options:
@@ -43,9 +114,8 @@ select col_name, col_name,... from tableName where ... limit num offset num;
         regexp
         and 
         or
-    union clause options://connect two select clauses;
-        distinct
-        all
+    distinct
+    all
     order by clause options:
         asc //ascent
         desc //descent
@@ -59,7 +129,12 @@ select col_name, col_name,... from tableName where ... limit num offset num;
         right join
         
         select a.job from stu a inner join stu_2 b on a.age=b.age;
-    meta option:
+    
+    as
+
+    union clause options://connect two select clauses;
+
+meta option:
     
     select version();
            database();
@@ -74,16 +149,39 @@ update tableName set col_name=value, ... where ...;
 delete from tableName where ...;
 
 show columns from tableName;
+describe tableName;//desc tableName;
 
 alter table tableName drop col_name;
 alter table tableName add col_name col_type;
     alter clause:
         add clause:
             index
-        
+            //主键约束
+            primary key(colname)
+            //外健约束
+            constraint name foreign key(colname) references main_table(col_name);
+            //唯一约束
+            constraint name unique(colname)
+            //检查约束
+            constraint name check(condition)
+
         drop
+            option:
+                foreign key(col_name)
+                drop foreign key(col_name)
+                drop index //delete foreign key constraint
+                drop constraint 
         modify
-        change
+        change:
+            options:
+                column 
+
+                change column name ....
+                //添加或者取消默认值约束是通过更改列属性实现的
+                default value
+                default null
+                change column name not null
+
         alter :
            alter table tableName alter i set default num;
            alter table tableName alter i drop default;
@@ -91,6 +189,8 @@ alter table tableName add col_name col_type;
         rename to
 
 drop database databaseName;
+drop database if exists databaseName;
+
 drop table tableName;
 
 
